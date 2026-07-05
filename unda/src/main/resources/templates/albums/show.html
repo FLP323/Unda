@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${album.titolo} + ' - Unda'">Album - Unda</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<img th:src="${album.coverImageUrl}" alt="Copertina" width="250" th:if="${album.coverImageUrl}">
+		<h1 th:text="${album.titolo}">Titolo Album</h1>
+		<p th:text="'Data di uscita: ' + ${album.releaseDate}">Data</p>
+		<div>
+			<span th:each="genere : ${album.generi}" class="genre-badge" th:text="${genere}">Genere</span>
+		</div>
+
+		<p>
+			<strong>Artisti: </strong>
+			<span th:each="artista, iter : ${album.artisti}">
+				<a th:href="@{/artists/{id}(id=${artista.id})}" th:text="${artista.name}">Artista</a>
+				<span th:if="!${iter.last}">, </span>
+			</span>
+		</p>
+
+		<hr>
+
+		<h2>Canzoni</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Titolo</th>
+					<th>Durata</th>
+					<th>Artisti</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="canzone : ${album.canzoni}">
+					<td th:text="${canzone.numeroTraccia}">1</td>
+					<td th:text="${canzone.titolo}">Titolo Canzone</td>
+					<td th:text="${canzone.durataFormattata}">3:00</td>
+					<td>
+						<span th:each="main : ${canzone.mainArtists}">
+							<a th:href="@{/artists/{id}(id=${main.id})}" th:text="${main.name}">Artista</a>
+						</span>
+						<span th:if="${!canzone.featuringArtists.isEmpty()}">
+							<span> ft. </span>
+							<span th:each="feat, iter : ${canzone.featuringArtists}">
+								<a th:href="@{/artists/{id}(id=${feat.id})}" th:text="${feat.name}">Feat</a>
+								<span th:if="!${iter.last}">, </span>
+							</span>
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- solo ADMIN -->
+		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<a th:href="@{/admin/albums/{id}/edit(id=${album.id})}">
+				<button>Modifica album</button>
+			</a>
+			<form th:action="@{/admin/albums/{id}/delete(id=${album.id})}" method="post" style="display:inline;">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				<button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo album?')">Elimina
+					album</button>
+			</form>
+		</div>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

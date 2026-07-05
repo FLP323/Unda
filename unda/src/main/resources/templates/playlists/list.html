@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Playlist - Unda</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<h1>Playlist</h1>
+		<ul>
+			<li th:each="playlist : ${playlists}">
+				<a th:href="@{/playlists/{id}(id=${playlist.id})}">
+					<span th:text="${playlist.nome}">Nome Playlist</span>
+					<span th:if="${playlist.descrizione}" th:text="' - ' + ${playlist.descrizione}">Descrizione</span>
+				</a>
+			</li>
+		</ul>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

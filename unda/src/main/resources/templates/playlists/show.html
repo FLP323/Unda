@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title th:text="${playlist.nome} + ' - Unda'">Playlist - Unda</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<h1 th:text="${playlist.nome}">Nome Playlist</h1>
+		<p th:if="${playlist.descrizione}" th:text="${playlist.descrizione}">Descrizione</p>
+		<p><strong>Creata da: </strong><span th:text="${playlist.autore.username}">username</span></p>
+
+		<hr>
+
+		<h2>Canzoni</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Titolo</th>
+					<th>Album</th>
+					<th>Durata</th>
+					<th>Artisti</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="canzone, iter : ${playlist.canzoni}">
+					<td th:text="${iter.index + 1}">1</td>
+					<td th:text="${canzone.titolo}">Titolo Canzone</td>
+					<td>
+						<a th:href="@{/albums/{id}(id=${canzone.album.id})}" th:text="${canzone.album.titolo}">Album</a>
+					</td>
+					<td th:text="${canzone.durataFormattata}">3:00</td>
+					<td>
+						<span th:each="main : ${canzone.mainArtists}">
+							<a th:href="@{/artists/{id}(id=${main.id})}" th:text="${main.name}">Artista</a>
+						</span>
+						<span th:if="${!canzone.featuringArtists.isEmpty()}">
+							<span> ft. </span>
+							<span th:each="feat, fIter : ${canzone.featuringArtists}">
+								<a th:href="@{/artists/{id}(id=${feat.id})}" th:text="${feat.name}">Feat</a>
+								<span th:if="!${fIter.last}">, </span>
+							</span>
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

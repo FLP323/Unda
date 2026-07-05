@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Modifica Artista - Unda</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<h1>Modifica Artista</h1>
+		<form th:action="@{/admin/artists/{id}(id=${artista.id})}" method="post">
+			<div>
+				<label for="name">Nome</label>
+				<input type="text" id="name" name="name" th:value="${artista.name}" required>
+			</div>
+			<div>
+				<label for="bio">Biografia</label>
+				<textarea id="bio" name="bio" th:text="${artista.bio}"></textarea>
+			</div>
+			<div>
+				<label for="imageUrl">URL Immagine</label>
+				<input type="url" id="imageUrl" name="imageUrl" th:value="${artista.imageUrl}">
+			</div>
+			<div>
+				<label>Generi</label>
+				<div class="checkbox-group">
+					<div class="checkbox-item" th:each="genere : ${allGenres}">
+						<input type="checkbox" name="generi" th:value="${genere}" th:id="${genere}">
+						<label th:for="${genere}" th:text="${genere}">Genere</label>
+					</div>
+				</div>
+			</div>
+			<button type="submit">Salva Modifiche</button>
+			<a th:href="@{/artists/{id}(id=${artista.id})}"><button type="button">Annulla</button></a>
+		</form>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

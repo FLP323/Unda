@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Unda - Home</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<h1>Benvenuto su Unda</h1>
+		<section>
+			<h2>Artisti</h2>
+			<a th:href="@{/artists}">Vedi tutti gli artisti</a>
+		</section>
+
+		<section>
+			<h2>Playlist</h2>
+			<a th:href="@{/playlists}">Vedi tutte le playlist</a>
+			<div sec:authorize="isAuthenticated()">
+				<a th:href="@{/user/playlists}">Vedi le tue playlist</a>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

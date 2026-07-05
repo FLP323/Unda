@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Le mie Playlist - Unda</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<h1>Le mie Playlist</h1>
+		<ul>
+			<li th:each="playlist : ${playlists}">
+				<a th:href="@{/playlists/{id}(id=${playlist.id})}">
+					<span th:text="${playlist.nome}">Nome Playlist</span>
+				</a>
+				<span th:if="${playlist.descrizione}" th:text="${playlist.descrizione}"></span>
+				<div>
+					<a th:href="@{/user/playlists/{id}/edit(id=${playlist.id})}">Modifica</a>
+					<form th:action="@{/user/playlists/{id}/delete(id=${playlist.id})}" method="post"
+						style="display:inline;">
+						<button type="submit"
+							onclick="return confirm('Sei sicuro di voler eliminare questa playlist?')">Elimina</button>
+					</form>
+				</div>
+			</li>
+		</ul>
+		<p th:if="${#lists.isEmpty(playlists)}">Non hai ancora creato nessuna playlist.</p>
+		<a th:href="@{/user/playlists/new}"><button>Crea nuova playlist</button></a>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

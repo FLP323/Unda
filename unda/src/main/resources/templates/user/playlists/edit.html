@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Modifica Playlist - Unda</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<h1>Modifica Playlist</h1>
+		<form th:action="@{/user/playlists/{id}(id=${playlist.id})}" method="post">
+			<div>
+				<label for="nome">Nome</label>
+				<input type="text" id="nome" name="nome" th:value="${playlist.nome}" required>
+			</div>
+			<div>
+				<label for="descrizione">Descrizione</label>
+				<textarea id="descrizione" name="descrizione" th:text="${playlist.descrizione}"></textarea>
+			</div>
+			<button type="submit">Salva</button>
+			<a th:href="@{/user/playlists}"><button type="button">Annulla</button></a>
+		</form>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

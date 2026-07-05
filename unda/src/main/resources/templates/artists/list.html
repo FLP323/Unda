@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Unda - Artisti</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<h1>Artisti</h1>
+		<ul>
+			<li th:each="artista : ${artists}">
+				<a th:href="@{/artists/{id}(id=${artista.id})}">
+					<img th:src="${artista.imageUrl}" alt="Foto" width="100" th:if="${artista.imageUrl}">
+					<span th:text="${artista.name}">Nome Artista</span>
+				</a>
+			</li>
+		</ul>
+
+		<!-- solo ADMIN -->
+		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<a th:href="@{/admin/artists/new}">
+				<button>Aggiungi un artista</button>
+			</a>
+		</div>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>

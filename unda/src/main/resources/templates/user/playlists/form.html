@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Nuova Playlist - Unda</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<h1>Crea nuova Playlist</h1>
+		<form th:action="@{/user/playlists}" method="post">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+			<div>
+				<label for="nome">Nome</label>
+				<input type="text" id="nome" name="nome" required>
+			</div>
+			<div>
+				<label for="descrizione">Descrizione</label>
+				<textarea id="descrizione" name="descrizione"></textarea>
+			</div>
+			<button type="submit">Crea</button>
+			<a th:href="@{/user/playlists}"><button type="button">Annulla</button></a>
+		</form>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

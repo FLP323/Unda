@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title th:text="${artista.name} + ' - Unda'">Artista - Unda</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<img th:src="${artista.imageUrl}" alt="Foto" width="200" th:if="${artista.imageUrl}">
+		<h1 th:text="${artista.name}">Nome Artista</h1>
+		<p th:text="${artista.bio}">Biografia</p>
+		<div>
+			<span th:each="genere : ${artista.generi}" class="genre-badge" th:text="${genere}">Genere</span>
+		</div>
+
+		<hr>
+
+		<h2>Album</h2>
+		<ul>
+			<li th:each="album : ${artista.albums}">
+				<a th:href="@{/albums/{id}(id=${album.id})}">
+					<img th:src="${album.coverImageUrl}" alt="Copertina" width="80" th:if="${album.coverImageUrl}">
+					<span th:text="${album.titolo}">Titolo Album</span>
+					<span th:text="'(' + ${album.releaseDate} + ')'">(anno)</span>
+				</a>
+			</li>
+		</ul>
+
+		<!-- solo ADMIN -->
+		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<a th:href="@{/admin/albums/new}">
+				<button>Aggiungi un album</button>
+			</a>
+			<a th:href="@{/admin/artists/{id}/edit(id=${artista.id})}">
+				<button>Modifica artista</button>
+			</a>
+			<form th:action="@{/admin/artists/{id}/delete(id=${artista.id})}" method="post" style="display:inline;">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				<button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo artista?')">Elimina
+					artista</button>
+			</form>
+		</div>
+	</main>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>
