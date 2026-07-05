@@ -2,11 +2,9 @@
 -- UTENTI
 -- sequence utente_seq: nextval = 1, 51, 101, 151, 201
 -- ================================================
-insert into utente(id, username, password, role) values(nextval('utente_seq'), 'admin', '$2a$10$yWAIDyuEr78BBBFZ5cYh8.Nw4gUHFTRG5FwaWqNCGeOD8M4mh3.xy', 'ROLE_ADMIN');       -- id=1
-insert into utente(id, username, password, role) values(nextval('utente_seq'), 'user', '$2a$10$yWAIDyuEr78BBBFZ5cYh8.Nw4gUHFTRG5FwaWqNCGeOD8M4mh3.xy', 'ROLE_USER');         -- id=51
-insert into utente(id, username, password, role) values(nextval('utente_seq'), 'pinco', '$2a$10$yWAIDyuEr78BBBFZ5cYh8.Nw4gUHFTRG5FwaWqNCGeOD8M4mh3.xy', 'ROLE_USER');        -- id=101
-insert into utente(id, username, password, role) values(nextval('utente_seq'), 'paolo', '$2a$10$yWAIDyuEr78BBBFZ5cYh8.Nw4gUHFTRG5FwaWqNCGeOD8M4mh3.xy', 'ROLE_ADMIN');       -- id=151
-insert into utente(id, username, password, role) values(nextval('utente_seq'), 'utente1', '$2a$10$yWAIDyuEr78BBBFZ5cYh8.Nw4gUHFTRG5FwaWqNCGeOD8M4mh3.xy', 'ROLE_USER');     -- id=201
+insert into utente(id, username, password, role) values(nextval('utente_seq'), 'admin', '$2a$10$hsgSNeY1qNf6u/VBDIx.dOYffZ31kZE01dIy0qZS2U84LleJm0l8e', 'ROLE_ADMIN');       -- id=1
+insert into utente(id, username, password, role) values(nextval('utente_seq'), 'utente', '$2a$10$k.dsygDDCyrOGhOe2UO10Oc.qfnYo6T6iFnaKkJ94vOFOwUcapD0K', 'ROLE_USER');         -- id=51
+insert into utente(id, username, password, role) values(nextval('utente_seq'), 'utente2', '$2a$10$k.dsygDDCyrOGhOe2UO10Oc.qfnYo6T6iFnaKkJ94vOFOwUcapD0K', 'ROLE_USER');        -- id=101
 
 -- ================================================
 -- ARTISTI

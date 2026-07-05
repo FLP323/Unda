@@ -60,7 +60,7 @@ const UserPlaylistEdit: React.FC = () => {
 
     const handleSave = async () => {
 		await api.put(`/rest/user/playlists/${id}`, { nome, descrizione, canzoni: playlistSongs });
-		window.location.replace("http://localhost:8080/user/playlists");
+		window.location.replace("http://127.0.0.1:8080/user/playlists");
     };
 
     return (

@@ -45,7 +45,7 @@ public class AlbumController {
 	@PostMapping("/admin/albums")
 	public String createAlbum(@ModelAttribute Album album) {
 	    albumService.createAlbum(album);
-	    return "redirect:http://localhost:5173/admin/albums/" + album.getId() + "/edit";
+	    return "redirect:http://127.0.0.1:5173/admin/albums/" + album.getId() + "/edit";
 	}
 
 	@GetMapping("/admin/albums/{id}/edit")
@@ -60,7 +60,7 @@ public class AlbumController {
 	@PostMapping("/admin/albums/{id}")
 	public String updateAlbum(@PathVariable Long id, @ModelAttribute Album album) {
 		albumService.updateAlbum(id, album);
-		return "redirect:http://localhost:5173/admin/albums/" + id + "/edit";
+		return "redirect:http://127.0.0.1:5173/admin/albums/" + id + "/edit";
 	}
 
 	@PostMapping("/admin/albums/{id}/delete")

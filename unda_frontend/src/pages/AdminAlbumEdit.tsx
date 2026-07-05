@@ -76,7 +76,6 @@ const AdminAlbumEdit: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validazione rapida
         for (let i = 0; i < songs.length; i++) {
             if (!songs[i].titolo.trim()) {
                 alert(`La canzone #${songs[i].numeroTraccia} non ha un titolo.`);
@@ -120,7 +119,7 @@ const AdminAlbumEdit: React.FC = () => {
                 <Alert severity="success" sx={{ mb: 2 }}>
                     Album salvato con successo!
                 </Alert>
-                <Button variant="contained" href={`http://localhost:8080/albums/${id}`}>
+                <Button variant="contained" href={`http://127.0.0.1:8080/albums/${id}`}>
                     Vai all'album
                 </Button>
             </Box>

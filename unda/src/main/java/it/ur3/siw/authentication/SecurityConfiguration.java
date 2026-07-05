@@ -66,13 +66,6 @@ public class SecurityConfiguration {
 			// Risorse statiche sempre pubbliche
 			authorize.requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/login", "/css/**", "/images/**").permitAll();
 			authorize.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll();
-			/*// [ALMENO USER] funzionalità dell'utente registrato (GET e POST)
-			authorize.requestMatchers(HttpMethod.GET, "/rest/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN");
-			authorize.requestMatchers(HttpMethod.POST, "/rest/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN");
-			// [SOLO ADMIN] funzionalità dell'amministratore (GET e POST)
-			authorize.requestMatchers(HttpMethod.GET, "/rest/user/**").hasAnyAuthority("ROLE_ADMIN");
-			authorize.requestMatchers(HttpMethod.POST, "/rest/user/**").hasAnyAuthority("ROLE_ADMIN");*/
-			// [TUTTI] funzionalità dell'utente qualsiasi (GET)
 			authorize.requestMatchers(HttpMethod.GET, "/albums/**", "/artists/**", "/playlists/**", "/rest/**").permitAll();
 			
 			// Sezione utente registrato generica

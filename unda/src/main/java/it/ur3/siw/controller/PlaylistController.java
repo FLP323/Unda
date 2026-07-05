@@ -63,7 +63,7 @@ public class PlaylistController {
 	public String createPlaylist(@ModelAttribute Playlist playlist) {
 	    Long userId = getCurrentUserId();
 	    Playlist saved = playlistService.createPlaylist(playlist, userId);
-	    return "redirect:http://localhost:5173/user/playlists/" + saved.getId() + "/edit";
+	    return "redirect:http://127.0.0.1:5173/user/playlists/" + saved.getId() + "/edit";
 	}
 
 	@GetMapping("/user/playlists/{id}/edit")
@@ -81,7 +81,7 @@ public class PlaylistController {
 	public String updatePlaylist(@PathVariable Long id, @ModelAttribute Playlist updated) {
 		Long userId = getCurrentUserId();
 		Playlist saved = playlistService.updatePlaylist(id, userId, updated);
-		return "redirect:http://localhost:5173/user/playlists/" + saved.getId() + "/edit";
+		return "redirect:http://127.0.0.1:5173/user/playlists/" + saved.getId() + "/edit";
 	}
 
 	@PostMapping("/user/playlists/{id}/delete")
