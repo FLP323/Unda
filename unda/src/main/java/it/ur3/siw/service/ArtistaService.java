@@ -35,8 +35,8 @@ public class ArtistaService {
 	}
 
 	@Transactional(readOnly = true)
-	public Artista findByIdWithAlbums(Long id) {
-		return artistaRepository.findById(id)
+	public Artista findWithAlbumsById(Long id) {
+		return artistaRepository.findWithAlbumsById(id)
 				.orElseThrow(() -> new NoSuchElementException("Artista non trovato con id: " + id));
 	}
 

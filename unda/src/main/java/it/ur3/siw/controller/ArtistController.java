@@ -30,7 +30,7 @@ public class ArtistController {
 
 	@GetMapping("/artists/{id}")
 	public String artistDetail(@PathVariable Long id, Model model) {
-		Artista artista = artistaService.findByIdWithAlbums(id);
+		Artista artista = artistaService.findWithAlbumsById(id);
 		model.addAttribute("artista", artista);
 		return "artists/show";
 	}
@@ -52,7 +52,7 @@ public class ArtistController {
 
 	@GetMapping("/admin/artists/{id}/edit")
 	public String editArtistForm(@PathVariable Long id, Model model) {
-		Artista artista = artistaService.findByIdWithAlbums(id);
+		Artista artista = artistaService.findWithAlbumsById(id);
 		model.addAttribute("artista", artista);
 		model.addAttribute("allGenres", Genere.values());
 		return "admin/artists/edit";
