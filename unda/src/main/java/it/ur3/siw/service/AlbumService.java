@@ -89,7 +89,10 @@ public class AlbumService {
 
 		existing.setTitolo(updated.getTitolo());
 		existing.setReleaseDate(updated.getReleaseDate());
-		existing.setCoverImageUrl(updated.getCoverImageUrl());
+		
+		if(updated.getCoverImageUrl() != null) {
+			existing.setCoverImageUrl(updated.getCoverImageUrl());
+		}
 
 	    if (updated.getGeneri() != null && !updated.getGeneri().isEmpty()) {
 	        existing.setGeneri(updated.getGeneri());

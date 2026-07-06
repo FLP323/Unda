@@ -52,7 +52,9 @@ public class ArtistaService {
 		existing.setName(updated.getName());
 		existing.setBio(updated.getBio());
 		existing.setImageUrl(updated.getImageUrl());
-		existing.setGeneri(updated.getGeneri());
+		if(updated.getGeneri() != null && !updated.getGeneri().isEmpty()) {
+			existing.setGeneri(updated.getGeneri());
+		}
 		return artistaRepository.save(existing);
 	}
 
